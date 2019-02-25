@@ -1,7 +1,7 @@
 <template>
   <div class="game-container">
     <span v-for="(el, index) in grid" :key="index">
-      <Row v-bind:blocks="el"/>
+      <Row v-bind:blocks="el" v-bind:blockClicked="blockClicked"/>
     </span>
   </div>
 </template>
@@ -35,12 +35,19 @@ export default {
       for (let i = 1; i <= total; i++) {
         let row = [];
         for (let j = 1; j <= total; j++) {
-          row.push({ id: String(i) + String(j), status: undefined });
+          row.push({ id: String(i) + "-" + String(j), status: undefined });
         }
         buildingGrid.push(row);
       }
 
       this.grid = buildingGrid;
+    },
+    blockClicked(rowCol) {
+      let arr = rowCol.split("-");
+      let row = Number(arr[0]) - 1;
+      let col = Number(arr[1]) - 1;
+
+      this.grid[row][col] = "X";
     }
   },
   created: function() {

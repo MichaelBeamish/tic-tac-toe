@@ -1,7 +1,7 @@
 <template>
   <div class="row-container">
     <span v-for="(block, index) in blocks" :key="index">
-      <Block v-bind:block="block"/>
+      <Block v-bind:block="block" v-bind:blockClicked="blockClicked"/>
     </span>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
   components: {
     Block
   },
-  props: ["blocks"]
+  props: ["blocks", "blockClicked"]
 };
 </script>
 
